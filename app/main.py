@@ -1,5 +1,5 @@
 from fastapi import FastAPI
-from mcp_project.app.api import task_router
+from mcp_project.app.api.task_router import task_router
 
 app = FastAPI()
 
