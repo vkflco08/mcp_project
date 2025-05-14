@@ -1,5 +1,5 @@
 from fastapi import FastAPI
-from app.api import task_router  # 태스크 관련 API를 처리하는 라우터
+from mcp_project.app.api import task_router
 
 app = FastAPI()
 
