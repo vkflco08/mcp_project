@@ -3,3 +3,7 @@ uvicorn
 pydantic
 langgraph
 gitpython
+langchain
+openai
+tiktoken
+chromadb
