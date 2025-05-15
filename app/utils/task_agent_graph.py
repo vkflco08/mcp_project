@@ -1,8 +1,9 @@
 from langgraph.graph import END, StateGraph
 from langchain_openai import ChatOpenAI
-from langchain_core.runnables import RunnableLambda  # 최신 기준
-from typing import TypedDict, Literal
+from langchain_core.runnables import RunnableLambda
+from pydantic import BaseModel
 
+# 모델 정의
 llm = ChatOpenAI(model="gpt-3.5-turbo", temperature=0)
 
 def analyze_task(state):
@@ -16,13 +17,21 @@ def generate_steps(state):
     return {"steps": steps.content}
 
 def store_result(state):
-    # 향후 ChromaDB 저장 처리 예정 (지금은 그냥 print)
     print("✅ 최종 결과 저장:", state["steps"])
     return {}
 
+# 상태 스키마 정의
+class Task(BaseModel):
+    description: str
+
+class TaskState(BaseModel):
+    task: Task
+    analysis: str = ""
+    steps: str = ""
+
 # LangGraph 구성
 def get_task_agent_graph():
-    builder = StateGraph()
+    builder = StateGraph(state_schema=TaskState)
     
     builder.add_node("분석", RunnableLambda(analyze_task))
     builder.add_node("단계생성", RunnableLambda(generate_steps))
