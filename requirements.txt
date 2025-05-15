@@ -3,7 +3,8 @@ uvicorn
 pydantic
 langgraph
 gitpython
-langchain
+langchain-community 
+langchain-openai
 openai
 tiktoken
 chromadb

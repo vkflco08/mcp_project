@@ -1,6 +1,7 @@
-from langgraph.graph import StateGraph, END
-from langchain.chat_models import ChatOpenAI
-from langchain.schema.runnable import RunnableLambda
+from langgraph.graph import END, StateGraph
+from langchain_openai import ChatOpenAI
+from langchain_core.runnables import RunnableLambda  # 최신 기준
+from typing import TypedDict, Literal
 
 llm = ChatOpenAI(model="gpt-3.5-turbo", temperature=0)
 
