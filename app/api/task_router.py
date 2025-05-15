@@ -1,5 +1,5 @@
 from fastapi import APIRouter
-from mcp_project.app.models.models import Task
+from app.models.models import Task
 
 task_router = APIRouter()
 
