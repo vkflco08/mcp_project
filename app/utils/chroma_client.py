@@ -1,9 +1,6 @@
 import chromadb
-from chromadb.config import Settings
 
-chroma_client = chromadb.Client(Settings(
-    chroma_db_impl="duckdb+parquet",
-    persist_directory="./chroma_db"  # Docker 사용 시 볼륨으로 연결 추천
-))
+# chroma_db 폴더는 docker volume으로 유지 가능
+chroma_client = chromadb.PersistentClient(path="./chroma_db")
 
 collection = chroma_client.get_or_create_collection("tasks")
