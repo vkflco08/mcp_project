@@ -5,3 +5,7 @@ app = FastAPI()
 
 # 태스크 관련 라우터 등록
 app.include_router(task_router)
+
+@app.get("/")
+def read_root():
+    return {"message": "Hello from MCP!"}
